@@ -1,3 +1,2 @@
 class TopsController < ApplicationController
-  
 end
