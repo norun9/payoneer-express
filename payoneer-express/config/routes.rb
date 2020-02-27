@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'payees#index'
+
+  resources :payees do
+    member do
+      get 'confirm'
+      post 'pay'
+    end
+  end
 end

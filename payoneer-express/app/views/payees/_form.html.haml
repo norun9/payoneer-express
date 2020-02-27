@@ -1,0 +1,23 @@
+= form_for(@payees) do |f|
+  - if @payee.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@payee.errors.count, "error")
+        prohibited this payee from being saved:
+      %ul
+      - @payee.errors.full_messages.each do |message|
+        %li= message
+    .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  .field
+    = f.label :balance
+    %br/
+    = f.text_field :balance
+  .field
+    = f.label :currency
+    %br/
+    = f.collection_select(:currency_id, Currency.all, :id, :code)
+  .actions
+    = f.submit
