@@ -8,3 +8,4 @@
 Currency.create(code: 'USD')
 Currency.create(code: 'EUR')
 Currency.create(code: 'GBP')
+Currency.create(code: 'JPY')
