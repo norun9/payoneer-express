@@ -41,7 +41,24 @@ class PayeesController < ApplicationController
   end
 
   def pay
+    payout_response = @payee.make_payout
 
+    if payout_response.ok?
+      redirect_to @payee, notice: 'Payout was successfully processed.'
+    else
+      redirect_to @payee, alert: "Payout failed: #{payout_response.body}"
+    end
+  end
+
+  def confirm
+    if params[:tag] == @payee.return_tag
+      @payee.signed = true
+      @payee.save!
+
+      redirect_to @payee, notice: 'Payoneer sign up successful'
+    else
+      redirect_to @payee, alert: 'Payoneer sign up fail'
+    end
   end
 
   private
